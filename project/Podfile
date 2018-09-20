@@ -1,0 +1,11 @@
+project '../project.xcodeproj'
+source 'https://github.com/CocoaPods/Specs.git'
+target 'project' do
+pod 'GoogleMaps'
+pod 'GooglePlaces'
+pod 'FacebookLogin'
+pod 'FacebookShare'
+pod 'Alamofire'
+pod 'Firebase/Core'
+use_frameworks!
+end
