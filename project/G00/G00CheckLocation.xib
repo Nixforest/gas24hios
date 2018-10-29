@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="G00CheckLocation" customModule="project" customModuleProvider="target">
+            <connections>
+                <outlet property="loadingView" destination="Msb-6M-6d6" id="ma1-6D-Wgn"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcome_1920_1080.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="eXF-PV-zFJ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Msb-6M-6d6">
+                    <rect key="frame" x="177" y="497" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="8r7-CC-hd5"/>
+                        <constraint firstAttribute="width" constant="20" id="s1T-Tg-MT2"/>
+                    </constraints>
+                </activityIndicatorView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đang cập nhật vị trí của bạn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKq-kS-mp5">
+                    <rect key="frame" x="80.5" y="522" width="214" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="jnW-eK-Q5H"/>
+                        <constraint firstAttribute="width" constant="214" id="lAF-mt-Yke"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="eXF-PV-zFJ" secondAttribute="bottom" id="3cM-Mp-4At"/>
+                <constraint firstItem="eXF-PV-zFJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4pH-vJ-Jtu"/>
+                <constraint firstItem="Msb-6M-6d6" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="64H-1l-HcT"/>
+                <constraint firstItem="tKq-kS-mp5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="BYr-UC-Ong"/>
+                <constraint firstAttribute="trailing" secondItem="eXF-PV-zFJ" secondAttribute="trailing" id="RCn-iw-6S8"/>
+                <constraint firstAttribute="bottom" secondItem="Msb-6M-6d6" secondAttribute="bottom" constant="150" id="THu-WA-GEh"/>
+                <constraint firstItem="eXF-PV-zFJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="VQq-KM-109"/>
+                <constraint firstItem="tKq-kS-mp5" firstAttribute="top" secondItem="Msb-6M-6d6" secondAttribute="bottom" constant="5" id="ec4-6H-reA"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="welcome_1920_1080.jpg" width="1080" height="1920"/>
+    </resources>
+</document>

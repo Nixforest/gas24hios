@@ -1,0 +1,13 @@
+project '../project.xcodeproj'
+source 'https://github.com/CocoaPods/Specs.git'
+target 'project' do
+pod 'SwiftKeychainWrapper'
+pod 'GoogleMaps'
+pod 'GooglePlaces'
+pod 'FacebookLogin'
+pod 'FacebookShare'
+pod 'Alamofire'
+pod 'Firebase/Core'
+pod 'VVWaterWaveView'
+use_frameworks!
+end
