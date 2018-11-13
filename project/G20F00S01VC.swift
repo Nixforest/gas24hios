@@ -10,7 +10,7 @@ import UIKit
 import harpyframework
 import VVWaterWaveView
 import SwiftKeychainWrapper
-
+//++ BUG0223-SPJ (KhoiVT 20180930) Gas24h - Forecast and set Timer Order Gas
 class G20F00S01VC: BaseParentViewController {
     @IBOutlet weak var lblGasPercent: UILabel!
     @IBOutlet weak var lblDatesForecast: UILabel!
@@ -47,7 +47,8 @@ class G20F00S01VC: BaseParentViewController {
     @IBOutlet var superView: UIView!
     @IBOutlet weak var bottomOfViewWave: NSLayoutConstraint!
     
-//    @IBOutlet weak var trallingOfViewWave: NSLayoutConstraint!
+    @IBOutlet weak var viewGasTankTopConstraint: NSLayoutConstraint!
+    //    @IBOutlet weak var trallingOfViewWave: NSLayoutConstraint!
 //    @IBOutlet weak var leadingOfViewWave: NSLayoutConstraint!
     @IBOutlet weak var widthViewWave: NSLayoutConstraint!
     internal var _data:              ForecastBean  = ForecastBean()
@@ -259,11 +260,14 @@ class G20F00S01VC: BaseParentViewController {
         let model = ForecastViewResponseModel(jsonString: dataStr)
         if model.isSuccess() {
             _data = model.record
-            BaseModel.shared.rushHour = _data.rushHour
-            BaseModel.shared.rushHourText = _data.rushHourText
-            BaseModel.shared.bankDiscount = _data.bankDiscount
-            BaseModel.shared.enable_bank = _data.enable_bank
-            BaseModel.shared.enable_rush_hour = _data.enable_rush_hour
+            BaseModel.shared.rushHour           = _data.rushHour
+            BaseModel.shared.rushHourText       = _data.rushHourText
+            BaseModel.shared.bankDiscount       = _data.bankDiscount
+            BaseModel.shared.enable_bank        = _data.enable_bank
+            BaseModel.shared.enable_rush_hour   = _data.enable_rush_hour
+            BaseModel.shared.max_days           = _data.max_days
+            BaseModel.shared.min_hour           = _data.min_hour
+            BaseModel.shared.max_hour           = _data.max_hour
             if _data.schedule.id == DomainConst.BLANK {
                 self.view.bringSubview(toFront: btnOrder)
                 let formattedString = NSMutableAttributedString()
@@ -298,14 +302,13 @@ class G20F00S01VC: BaseParentViewController {
                 let partTwo = NSMutableAttributedString(string: _data.last_order, attributes: yourOtherAttributes)
                 
                 let combination = NSMutableAttributedString()
-                
                 combination.append(partOne)
                 combination.append(partTwo) 
                 lblLastOrder.attributedText = combination
                 // Test Gas Percent
                 //_data.gas_percent = 81
                 //
-                if _data.gas_percent <= 15{
+                if _data.can_order == 1{
                     btnOrder.isHidden = false
                     lblWarningtitle.isHidden = false
                     lblWarningContent.isHidden = false
@@ -315,10 +318,13 @@ class G20F00S01VC: BaseParentViewController {
                     self.viewGasTank.bringSubview(toFront: lblWarningContent)
                 }
                 else{
+                    lbltitle1.isHidden = true
+                    lblTitle2.isHidden = true
                     btnOrder.isHidden = true
                     lblWarningtitle.isHidden = true
                     lblWarningContent.isHidden = true
                     imgWarning.isHidden = true
+                    viewGasTankTopConstraint.constant = -(btnOrder.frame.height)
                 }
                 if _data.gas_percent < 15{
                     setGasLevel1()
@@ -477,7 +483,7 @@ class G20F00S01VC: BaseParentViewController {
                 }
                 self.viewGasTank.bringSubview(toFront: viewNotification)
                 //++ test
-                btnOrder.isHidden = false
+                //btnOrder.isHidden = false
                 //--
                 BaseModel.shared.sharedString  = DomainConst.BLANK
                 BaseModel.shared.sharedIdTimer = DomainConst.BLANK
@@ -508,3 +514,4 @@ extension NSLayoutConstraint {
         return NSLayoutConstraint(item: self.firstItem, attribute: self.firstAttribute, relatedBy: self.relation, toItem: self.secondItem, attribute: self.secondAttribute, multiplier: multiplier, constant: self.constant)
     }
 }
+//-- BUG0223-SPJ (KhoiVT 20180930) Gas24h - Forecast and set Timer Order Gas

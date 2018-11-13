@@ -8,7 +8,7 @@
 
 import UIKit
 import harpyframework
-
+//++ BUG0223-SPJ (KhoiVT 20180930) Gas24h - Forecast and set Timer Order Gas
 class G20Const: NSObject {
     /** Function identifier */
     public static let FUNC_IDENTIFIER                           = DomainConst.APPNAME + "g020"
@@ -22,5 +22,5 @@ class G20Const: NSObject {
     public static let PATH_DELETE_ORDER                            = "Order/DeleteTimer"
     /** Path to connect with PHP server */
     public static let MESSAGE_DELETE_SUCCESS                            = "Xoá lịch hẹn thành công"
-    
 }
+//-- BUG0223-SPJ (KhoiVT 20180930) Gas24h - Forecast and set Timer Order Gas

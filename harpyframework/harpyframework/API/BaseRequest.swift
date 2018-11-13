@@ -83,13 +83,25 @@ open class BaseRequest: NSObject {
         request.setValue("Keep-Alive", forHTTPHeaderField: "Connection")
         //++ BUG0115-SPJ (NguyenPT 20170624) Handle add version code when request server
         // Version
+        //++ BUG0227-SPJ (KhoiVT 20180111) Gas24h - Gasservice - Add field "acc" when request API to save track
+        var username = DomainConst.BLANK
+        username = BaseModel.shared.getUserInfoLogin(id: DomainConst.KEY_USERNAME)
+//        self.data = self.data.replacingOccurrences(
+//            of: "}",
+//            with: String.init(format: ",\"%@\":\"%@\"}",
+//                              DomainConst.KEY_VERSION_CODE,
+//                              DomainConst.VERSION_CODE.replacingOccurrences(
+//                                of: DomainConst.SPLITER_TYPE4,
+//                                with: DomainConst.BLANK)))
         self.data = self.data.replacingOccurrences(
             of: "}",
-            with: String.init(format: ",\"%@\":\"%@\"}",
+            with: String.init(format: ",\"%@\":\"%@\",\"%@\":\"%@\"}",
                               DomainConst.KEY_VERSION_CODE,
                               DomainConst.VERSION_CODE.replacingOccurrences(
                                 of: DomainConst.SPLITER_TYPE4,
-                                with: DomainConst.BLANK)))
+                                with: DomainConst.BLANK),
+                              "acc", username))
+        //-- BUG0227-SPJ (KhoiVT 20180111) Gas24h - Gasservice - Add field "acc" when request API to save track
         //-- BUG0115-SPJ (NguyenPT 20170624) Handle add version code when request server
         // Make data string
         request.httpBody = self.data.data(using: String.Encoding.utf8)

@@ -1068,6 +1068,7 @@
                         <outlet property="levelOfGas" destination="dPe-tM-dMN" id="5dn-8X-gba"/>
                         <outlet property="superView" destination="x4g-vg-f8N" id="ovA-qS-XNm"/>
                         <outlet property="viewGasTank" destination="n7M-Ov-6Ex" id="Roc-3m-Ylm"/>
+                        <outlet property="viewGasTankTopConstraint" destination="sw3-Km-VjY" id="HFc-Ig-YdJ"/>
                         <outlet property="viewNotification" destination="54d-md-5dj" id="grI-4O-wxN"/>
                         <outlet property="viewWave" destination="dJb-Vk-cHr" id="78J-K6-5qB"/>
                         <outlet property="widthViewWave" destination="uIy-BZ-nCU" id="maN-ip-PMZ"/>
@@ -1657,35 +1658,117 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8y-ou-twB">
-                                <rect key="frame" x="137" y="328.5" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="64" y="265" width="192" height="38"/>
+                                <color key="backgroundColor" red="1" green="0.23921568630000001" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="SCAN QR CODE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="goScanScreen:" destination="VJM-rB-W6V" eventType="touchUpInside" id="c2X-tU-O9W"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="qrcode" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4xi-yS-3wr">
-                                <rect key="frame" x="80" y="274" width="160" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Di chuyển camera tới vùng chứa mã qrcode để quét" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4xi-yS-3wr">
+                                <rect key="frame" x="32" y="313" width="256" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="4xi-yS-3wr" firstAttribute="centerY" secondItem="47y-xg-vmU" secondAttribute="centerY" id="8om-09-hwX"/>
+                            <constraint firstItem="4xi-yS-3wr" firstAttribute="centerX" secondItem="47y-xg-vmU" secondAttribute="centerX" id="FOm-Yj-e9D"/>
                             <constraint firstItem="S8y-ou-twB" firstAttribute="centerX" secondItem="47y-xg-vmU" secondAttribute="centerX" id="GNp-oU-nqn"/>
-                            <constraint firstItem="4xi-yS-3wr" firstAttribute="centerX" secondItem="47y-xg-vmU" secondAttribute="centerX" id="nTg-Qb-i5Z"/>
-                            <constraint firstItem="4xi-yS-3wr" firstAttribute="width" secondItem="47y-xg-vmU" secondAttribute="width" multiplier="1/2" id="rJw-LC-Ats"/>
-                            <constraint firstItem="S8y-ou-twB" firstAttribute="top" secondItem="4xi-yS-3wr" secondAttribute="bottom" constant="34" id="wfz-tc-rkI"/>
+                            <constraint firstItem="S8y-ou-twB" firstAttribute="width" secondItem="47y-xg-vmU" secondAttribute="width" multiplier="0.6" id="Qps-50-fvc"/>
+                            <constraint firstItem="4xi-yS-3wr" firstAttribute="width" secondItem="47y-xg-vmU" secondAttribute="width" multiplier="0.8" id="a99-f2-FaQ"/>
+                            <constraint firstItem="S8y-ou-twB" firstAttribute="height" secondItem="47y-xg-vmU" secondAttribute="height" multiplier="1/15" id="bQr-lW-xgs"/>
+                            <constraint firstItem="S8y-ou-twB" firstAttribute="centerY" secondItem="47y-xg-vmU" secondAttribute="centerY" id="oTp-3n-Ads"/>
+                            <constraint firstItem="4xi-yS-3wr" firstAttribute="top" secondItem="S8y-ou-twB" secondAttribute="bottom" constant="10" id="zuc-MZ-IfZ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnScan" destination="S8y-ou-twB" id="mkC-I8-rk7"/>
                         <outlet property="lblQRCode" destination="4xi-yS-3wr" id="Dvx-2S-8lo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qGf-LJ-K1S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="19256" y="553"/>
+        </scene>
+        <!--G21F00S03VC-->
+        <scene sceneID="8KM-ps-uJa">
+            <objects>
+                <viewController storyboardIdentifier="G21F00S03VC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bnE-gq-rab" customClass="G21F00S03VC" customModule="project" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vq6-GU-H8f"/>
+                        <viewControllerLayoutGuide type="bottom" id="DMf-3d-44R"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nZM-KU-3Zd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i8E-TP-HUB">
+                                <rect key="frame" x="0.0" y="154" width="320" height="261.5"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VEj-oq-4lN">
+                                        <rect key="frame" x="80" y="0.0" width="160" height="160"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="VEj-oq-4lN" secondAttribute="height" multiplier="1:1" id="0nX-ij-XRE"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MR. KHOI" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTh-Vn-sRy">
+                                        <rect key="frame" x="64" y="170" width="192.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" red="1" green="0.23921568630000001" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nhân viên IT" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ed-dF-U1c">
+                                        <rect key="frame" x="32.5" y="200.5" width="256" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MNV: 007" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZr-Mx-1AC">
+                                        <rect key="frame" x="32" y="231" width="256" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="wTh-Vn-sRy" firstAttribute="width" secondItem="i8E-TP-HUB" secondAttribute="width" multiplier="0.6" id="0VQ-LZ-OP1"/>
+                                    <constraint firstItem="0Ed-dF-U1c" firstAttribute="centerX" secondItem="i8E-TP-HUB" secondAttribute="centerX" id="8ux-XD-gFu"/>
+                                    <constraint firstItem="FZr-Mx-1AC" firstAttribute="width" secondItem="i8E-TP-HUB" secondAttribute="width" multiplier="0.8" id="E9U-y5-0dp"/>
+                                    <constraint firstItem="0Ed-dF-U1c" firstAttribute="top" secondItem="wTh-Vn-sRy" secondAttribute="bottom" constant="10" id="Hgq-5S-ZV4"/>
+                                    <constraint firstAttribute="bottom" secondItem="FZr-Mx-1AC" secondAttribute="bottom" constant="10" id="KGK-zb-UDJ"/>
+                                    <constraint firstItem="FZr-Mx-1AC" firstAttribute="top" secondItem="0Ed-dF-U1c" secondAttribute="bottom" constant="10" id="NuS-Dl-fjX"/>
+                                    <constraint firstItem="VEj-oq-4lN" firstAttribute="centerX" secondItem="i8E-TP-HUB" secondAttribute="centerX" id="b70-HT-FaT"/>
+                                    <constraint firstItem="wTh-Vn-sRy" firstAttribute="centerX" secondItem="i8E-TP-HUB" secondAttribute="centerX" id="fCr-JP-lcz"/>
+                                    <constraint firstItem="VEj-oq-4lN" firstAttribute="top" secondItem="i8E-TP-HUB" secondAttribute="top" id="ga1-gy-s6Q"/>
+                                    <constraint firstItem="VEj-oq-4lN" firstAttribute="width" secondItem="i8E-TP-HUB" secondAttribute="width" multiplier="0.5" id="hUx-s5-Jqk"/>
+                                    <constraint firstItem="wTh-Vn-sRy" firstAttribute="top" secondItem="VEj-oq-4lN" secondAttribute="bottom" constant="10" id="rzQ-FK-JBt"/>
+                                    <constraint firstItem="0Ed-dF-U1c" firstAttribute="width" secondItem="i8E-TP-HUB" secondAttribute="width" multiplier="0.8" id="sIN-37-op3"/>
+                                    <constraint firstItem="FZr-Mx-1AC" firstAttribute="centerX" secondItem="i8E-TP-HUB" secondAttribute="centerX" id="vOu-Pb-IDz"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="i8E-TP-HUB" firstAttribute="centerX" secondItem="nZM-KU-3Zd" secondAttribute="centerX" id="Sxe-zc-HOu"/>
+                            <constraint firstItem="i8E-TP-HUB" firstAttribute="centerY" secondItem="nZM-KU-3Zd" secondAttribute="centerY" id="XUb-Bc-qQ8"/>
+                            <constraint firstItem="i8E-TP-HUB" firstAttribute="width" secondItem="nZM-KU-3Zd" secondAttribute="width" id="mP5-RF-fG9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imgEmployee" destination="VEj-oq-4lN" id="oe9-9b-YgG"/>
+                        <outlet property="lblIdEmployee" destination="FZr-Mx-1AC" id="xug-hc-ZKs"/>
+                        <outlet property="lblJob" destination="0Ed-dF-U1c" id="ZXd-ed-59O"/>
+                        <outlet property="lblName" destination="wTh-Vn-sRy" id="zcg-hV-SI8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Poo-c8-s6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="19282" y="1279"/>
         </scene>
         <!--G21F00S02VC-->
         <scene sceneID="C8N-pM-9ww">
@@ -1750,7 +1833,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BCG-mI-dvb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="17559.200000000001" y="1638.5307346326838"/>
+            <point key="canvasLocation" x="18553" y="1278"/>
         </scene>
         <!--G04F00S01VC-->
         <scene sceneID="BU1-N1-g4S">

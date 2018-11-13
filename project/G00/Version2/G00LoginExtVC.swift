@@ -8,9 +8,6 @@
 
 import UIKit
 import harpyframework
-import FacebookLogin
-import FacebookCore
-import FacebookShare
 
 class G00LoginExtVC: ChildExtViewController {
     // MARK: Properties
@@ -371,30 +368,30 @@ class G00LoginExtVC: ChildExtViewController {
     /**
      * Get data from facebook
      */
-    internal func getDataFromFacebook() {
-        if let token = AccessToken.current {
-            let request = GraphRequest.init(
-                graphPath: "me",
-                parameters: ["fields": "id, name, first_name, email"],
-                accessToken: token)
-            request.start {
-                (respond, result) -> Void in
-                switch result {
-                case .failed(let error):
-                    self.showAlert(message: error.localizedDescription)
-                    break
-                case .success(response: _):
-//                    if let data = resp.dictionaryValue {
-//                        if let email = data["email"] {
-//                            self.txtPhone.text = email as? String
-//                        }
-//                    }
-                    self.inputPhone()
-                    break
-                }
-            }
-        }
-    }
+//    internal func getDataFromFacebook() {
+//        if let token = AccessToken.current {
+//            let request = GraphRequest.init(
+//                graphPath: "me",
+//                parameters: ["fields": "id, name, first_name, email"],
+//                accessToken: token)
+//            request.start {
+//                (respond, result) -> Void in
+//                switch result {
+//                case .failed(let error):
+//                    self.showAlert(message: error.localizedDescription)
+//                    break
+//                case .success(response: _):
+////                    if let data = resp.dictionaryValue {
+////                        if let email = data["email"] {
+////                            self.txtPhone.text = email as? String
+////                        }
+////                    }
+//                    self.inputPhone()
+//                    break
+//                }
+//            }
+//        }
+//    }
     
     /**
      * Handle input phone if can not get phone number from facebook

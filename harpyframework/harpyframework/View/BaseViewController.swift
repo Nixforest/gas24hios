@@ -1006,6 +1006,9 @@ open class BaseViewController : UIViewController {
         let data = (notification.object as! String)
         let model = BaseRespModel(jsonString: data)
         if model.isSuccess() {
+            //++ Delete User_login_login
+            BaseModel.shared.user_info_login = [ConfigBean]()
+            //--
             BaseModel.shared.logoutSuccess()
             self.popToRootView()
 //            self.pushToView(name: DomainConst.G00_LOGIN_VIEW_CTRL)

@@ -4,10 +4,11 @@ target 'project' do
 pod 'SwiftKeychainWrapper'
 pod 'GoogleMaps'
 pod 'GooglePlaces'
-pod 'FacebookLogin'
-pod 'FacebookShare'
 pod 'Alamofire'
 pod 'Firebase/Core'
 pod 'VVWaterWaveView'
+pod 'FacebookCore'
+pod 'FacebookLogin'
+pod 'FacebookShare'
 use_frameworks!
 end

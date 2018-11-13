@@ -8,7 +8,7 @@
 
 import UIKit
 import harpyframework
-
+//++ BUG0223-SPJ (KhoiVT 20180930) Gas24h - Forecast and set Timer Order Gas
 public class TimerBean: ConfigBean {
     /** DAys */
     public var days:               String = DomainConst.BLANK
@@ -35,3 +35,4 @@ public class TimerBean: ConfigBean {
         super.init()
     }
 }
+//-- BUG0223-SPJ (KhoiVT 20180930) Gas24h - Forecast and set Timer Order Gas

@@ -11,8 +11,12 @@ import UserNotifications
 import harpyframework
 import GoogleMaps
 import GooglePlaces
-import FacebookCore
 import Firebase
+import FBSDKCoreKit
+import FBSDKCoreKit.FBSDKAppEvents
+import FacebookCore
+//import FBSDKLoginKit
+//import FBSDKShareKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -82,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //++ BUG0157-SPJ (NguyenPT 20171004) Use facebook framework
         // Facebook
-        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+       // SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         //-- BUG0157-SPJ (NguyenPT 20171004) Use facebook framework
         
         //++ BUG0168-SPJ (NguyenPT 20171124) Reset Cache data when terminal app
@@ -92,10 +96,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //++ BUG0193-SPJ (NguyenPT 20180402) Add firebase core
         FirebaseApp.configure()
         //-- BUG0193-SPJ (NguyenPT 20180402) Add firebase core
+        //++ add Facebook
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        //--
         
         return true
     }
-
+    //++ add Facebook
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
+        
+        // Add any custom logic here.
+        
+        return handled
+    }
+    //-- add Facebook
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -113,9 +128,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
+        AppEventsLogger.activate(application)
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         //++ BUG0157-SPJ (NguyenPT 20171004) Use facebook framework
-        AppEventsLogger.activate(application)
+        //AppEventsLogger.activate(application)
         //-- BUG0157-SPJ (NguyenPT 20171004) Use facebook framework
         //++ BUG0165-SPJ (NguyenPT 20171122) Can not start Transaction Status request after login
         if let currentVC = BaseViewController.getCurrentViewController() {
@@ -281,14 +297,129 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /**
      * Asks the delegate to open a resource identified by a URL.
      */
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        let handled: Bool = SDKApplicationDelegate.shared.application(
-            application,
-            open: url,
-            sourceApplication: sourceApplication,
-            annotation: annotation)
-        return handled
-    }
+//    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+//        let handled: Bool = SDKApplicationDelegate.shared.application(
+//            application,
+//            open: url,
+//            sourceApplication: sourceApplication,
+//            annotation: annotation)
+//        return handled
+//    }
     //-- BUG0157-SPJ (NguyenPT 20171004) Use facebook framework
+    //++
+    /**
+     * For more details, please take a look at:
+     * developers.facebook.com/docs/swift/appevents
+     */
+    func logViewedContentEvent(contentType : String, contentData : String, contentId : String, currency : String, price : Double) {
+        let params : AppEvent.ParametersDictionary = [
+            .contentType : contentType,
+            .content : contentData,
+            .contentId : contentId,
+            .currency : currency
+        ]
+        let event = AppEvent(name: .viewedContent, parameters: params, valueToSum: price)
+        AppEventsLogger.log(event)
+    }
+
+    /**
+     * For more details, please take a look at:
+     * developers.facebook.com/docs/swift/appevents
+     */
+    func logSearchedEvent(contentType : String, contentData : String, contentId : String, searchString : String, success : Bool) {
+        let params : AppEvent.ParametersDictionary = [
+            .contentType : contentType,
+            .content : contentData,
+            .contentId : contentId,
+            .searchedString : searchString,
+            .successful : NSNumber(value: success ? 1 : 0)
+        ]
+        let event = AppEvent(name: .searched, parameters: params)
+        AppEventsLogger.log(event)
+    }
+    
+    /**
+     * For more details, please take a look at:
+     * developers.facebook.com/docs/swift/appevents
+     */
+    func logRatedEvent(contentType : String, contentData : String, contentId : String, maxRatingValue : Int, ratingGiven : Double) {
+        let params : AppEvent.ParametersDictionary = [
+            .contentType : contentType,
+            .content : contentData,
+            .contentId : contentId,
+            .maxRatingValue : NSNumber(value:maxRatingValue)
+        ]
+        let event = AppEvent(name: .rated, parameters: params, valueToSum: ratingGiven)
+        AppEventsLogger.log(event)
+    }
+    
+    /**
+     * For more details, please take a look at:
+     * developers.facebook.com/docs/swift/appevents
+     */
+    func logAddedToWishlistEvent(contentData : String, contentId : String, contentType : String, currency : String, price : Double) {
+        let params : AppEvent.ParametersDictionary = [
+            .content : contentData,
+            .contentId : contentId,
+            .contentType : contentType,
+            .currency : currency
+        ]
+        let event = AppEvent(name: .addedToWishlist, parameters: params, valueToSum: price)
+        AppEventsLogger.log(event)
+    }
+    
+    /**
+     * For more details, please take a look at:
+     * developers.facebook.com/docs/swift/appevents
+     */
+    func logAddedToCartEvent(contentData : String, contentId : String, contentType : String, currency : String, price : Double) {
+        let params : AppEvent.ParametersDictionary = [
+            .content : contentData,
+            .contentId : contentId,
+            .contentType : contentType,
+            .currency : currency
+        ]
+        let event = AppEvent(name: .addedToCart, parameters: params, valueToSum: price)
+        AppEventsLogger.log(event)
+    }
+    
+    /**
+     * For more details, please take a look at:
+     * developers.facebook.com/docs/swift/appevents
+     */
+    func logInitiatedCheckoutEvent(contentData : String, contentId : String, contentType : String, numItems : Int, paymentInfoAvailable : Bool, currency : String, totalPrice : Double) {
+        let params : AppEvent.ParametersDictionary = [
+            .content : contentData,
+            .contentId : contentId,
+            .contentType : contentType,
+            .itemCount : NSNumber(value:numItems),
+            .paymentInfoAvailable : NSNumber(value: paymentInfoAvailable ? 1 : 0),
+            .currency : currency
+        ]
+        let event = AppEvent(name: .initiatedCheckout, parameters: params, valueToSum: totalPrice)
+        AppEventsLogger.log(event)
+    }
+    
+    /**
+     * For more details, please take a look at:
+     * developers.facebook.com/docs/swift/appevents
+     */
+    func logAddedPaymentInfoEvent(success : Bool) {
+        let params : AppEvent.ParametersDictionary = [.successful : NSNumber(value: success ? 1 : 0)]
+        let event = AppEvent(name: .addedPaymentInfo, parameters: params)
+        AppEventsLogger.log(event)
+    }
+    
+    /**
+     * Call the built-in SDK function:
+     * amount is Double (required)
+     * currency is String from http://en.wikipedia.org/wiki/ISO_4217 (optional).
+     * parameters is ParametersDictionary (optional).
+     */
+    //AppEvent.purchased(amount: amount, currency: currency, extraParameters: parameters)
+    
+    
+    
+    //--
 }
 

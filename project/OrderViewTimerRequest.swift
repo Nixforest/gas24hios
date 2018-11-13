@@ -7,7 +7,7 @@
 //
 import UIKit
 import harpyframework
-
+//++ BUG0223-SPJ (KhoiVT 20180930) Gas24h - Forecast and set Timer Order Gas
 class OrderViewTimerRequest: BaseRequest{
     /**
      * Set data content
@@ -36,3 +36,4 @@ class OrderViewTimerRequest: BaseRequest{
         request.execute()
     }
 }
+//-- BUG0223-SPJ (KhoiVT 20180930) Gas24h - Forecast and set Timer Order Gas

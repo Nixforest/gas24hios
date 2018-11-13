@@ -107,6 +107,12 @@ public class BaseModel: NSObject {
     public var enable_bank:                 Int = 0
     /** Enable Rush Hour*/
     public var enable_rush_hour:            Int = 0
+    /** Enable Rush Hour*/
+    public var max_days:                    Int = 0
+    /** Enable Rush Hour*/
+    public var min_hour:                    Int = 0
+    /** Enable Rush Hour*/
+    public var max_hour:                    Int = 0
     /** Shared string */
     public var rushHour:                    String              = DomainConst.BLANK
     /** Shared string */

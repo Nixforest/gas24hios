@@ -7,7 +7,7 @@
 //
 import UIKit
 import harpyframework
-
+//++ BUG0223-SPJ (KhoiVT 20180930) Gas24h - Forecast and set Timer Order Gas
 class TimerResponseModel: BaseRespModel{
     /** Record */
     var record: TimerBean = TimerBean()
@@ -44,3 +44,4 @@ class TimerResponseModel: BaseRespModel{
         }
     }
 }
+//-- BUG0223-SPJ (KhoiVT 20180930) Gas24h - Forecast and set Timer Order Gas

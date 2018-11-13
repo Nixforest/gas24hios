@@ -9,7 +9,7 @@
 import UIKit
 import harpyframework
 
-
+//++ BUG0223-SPJ (KhoiVT 20180930) Gas24h - Forecast and set Timer Order Gas
 class G20F00S03VC: BaseParentViewController {
     
     //@IBOutlet weak var imgReduct: UIImageView!
@@ -27,7 +27,17 @@ class G20F00S03VC: BaseParentViewController {
     
     
     @IBAction func deleteDate(_ sender: Any) {
-        requestDeleteData()
+        let refreshAlert = UIAlertController(title: "Thông báo", message: "Bạn chắc chắn muốn xoá đặt gas hẹn giờ vào \(BaseModel.shared.sharedString)?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            self.requestDeleteData()
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            print("Handle Cancel Logic here")
+        }))
+        present(refreshAlert, animated: true, completion: nil)
+        
         //pushToViewAndClearData(name: "G20F00S01VC")
     }
 
@@ -50,7 +60,7 @@ class G20F00S03VC: BaseParentViewController {
             BaseModel.shared.sharedHour = DomainConst.BLANK
             BaseModel.shared.enable_rush_hour = 0
             BaseModel.shared.enable_bank = 0
-            showAlert(message: G20Const.MESSAGE_DELETE_SUCCESS,
+            showAlert(message: model.message,
                       okHandler: {
                         alert in
                         //self.backButtonTapped(self)
@@ -102,3 +112,4 @@ class G20F00S03VC: BaseParentViewController {
     }
     
 }
+//-- BUG0223-SPJ (KhoiVT 20180930) Gas24h - Forecast and set Timer Order Gas

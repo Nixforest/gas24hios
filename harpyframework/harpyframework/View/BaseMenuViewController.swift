@@ -178,16 +178,16 @@ open class BaseMenuViewController : BaseViewController {
         if BaseModel.shared.checkTrainningMode(){
             var k = false
             BaseModel.shared.menu.forEach { (configBean) in
-                if(configBean.id == DomainConst.KEY_GAS_FORECAST || configBean.id == DomainConst.KEY_SCAN_QRCODE){
+                if(configBean.id == DomainConst.KEY_SCAN_QRCODE){
                     k = true
                     return
                 }
             }
             
-//            if k == false{
-//                BaseModel.shared.menu.append(ConfigBean(id: DomainConst.KEY_GAS_FORECAST, name: "Dự báo gas"))
-//                BaseModel.shared.menu.append(ConfigBean(id: DomainConst.KEY_SCAN_QRCODE, name: "Quét mã nhân viên"))
-//            }
+            if k == false{
+                //BaseModel.shared.menu.append(ConfigBean(id: DomainConst.KEY_GAS_FORECAST, name: "Dự báo gas"))
+                BaseModel.shared.menu.append(ConfigBean(id: DomainConst.KEY_SCAN_QRCODE, name: "Quét mã nhân viên"))
+            }
         }
         //--
         // Dynamic menu

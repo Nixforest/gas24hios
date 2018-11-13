@@ -11,6 +11,22 @@ import harpyframework
 import AVFoundation
 import AudioToolbox
 
+extension URL {
+    
+    public var queryParameters: [String: String]? {
+        guard let components = URLComponents(url: self, resolvingAgainstBaseURL: true), let queryItems = components.queryItems else {
+            return nil
+        }
+        
+        var parameters = [String: String]()
+        for item in queryItems {
+            parameters[item.name] = item.value
+        }
+        
+        return parameters
+    }
+}
+
 class G21F00S02VC: BaseChildViewController {
     var captureSession: AVCaptureSession?
     
@@ -75,13 +91,54 @@ class G21F00S02VC: BaseChildViewController {
         }
     }
     
+    func getQueryStringParameter(url: String, param: String) -> String? {
+        guard let url = URLComponents(string: url) else { return nil }
+        return url.queryItems?.first(where: { $0.name == param })?.value
+    }
+    
     func showAlertWith(content: String) {
         let alertController = UIAlertController(title: "Content Qr Code", message: content, preferredStyle: .alert)
         let actionOk = UIAlertAction(title: "Ok", style: .default) { (alert) in
             //self.startScanQRcode()
             BaseModel.shared.sharedCode = content
-            self.navigationController?.popViewController(animated: true)
-            //self.pushToViewAndClearData(name: "G21F00S01VC")
+            var url = "http://profile.daukhimiennam.com/code_account/"
+            if BaseModel.shared.checkTrainningMode(){
+                url = "http://profile.spj.vn/code_account/"
+            }
+            if content.contains(url){
+                self.navigationController?.popViewController(animated: true)
+                self.pushToView(name: "G21F00S03VC")
+            }
+            else{
+                var id = ""
+                if content.contains("http://spj.vn/app?code") {
+                    if let code = self.getQueryStringParameter(url: content, param: "code"){
+                        id = code
+                    }
+                }
+                if id == DomainConst.BLANK{
+                    self.showAlert(message: "Mã QR Code không hợp lệ",
+                              okHandler: {
+                                alert in
+                                //self.backButtonTapped(self)
+                                //G08F00S02VC._id = model.record.id
+                                self.startScanQRcode()
+                    })
+                    //self.showAlert(message: "Mã QR Code không hợp lệ")
+                    
+                }
+                else{
+                    self.navigationController?.popViewController(animated: true)
+                    let promotionView = G13F00S01VC(nibName: G13F00S01VC.theClassName, bundle: nil)
+                    promotionView.activeUsingCode(code: id)
+                    if let controller = BaseViewController.getCurrentViewController() {
+                        controller.navigationController?.pushViewController(promotionView, animated: true)
+                    }
+                }
+                
+            }
+            
+            
         }
         let actionCancel = UIAlertAction(title: "Huỷ", style: .default) { (alert) in
             self.startScanQRcode()
@@ -142,11 +199,50 @@ extension G21F00S02VC: AVCaptureMetadataOutputObjectsDelegate {
             if metadataObj.stringValue != nil {
                 //qrCodeFrameView?.frame = CGRect.zero
                 self.stopScanQRcode()
-                self.showAlertWith(content: metadataObj.stringValue)
+                //self.showAlertWith(content: metadataObj.stringValue)
                 //print(metadataObj.stringValue)
                 //pushToViewAndClearData(name: "G21F00S01VC")
+                //++
+                if let content = metadataObj.stringValue{
+                    BaseModel.shared.sharedCode = content
+                    var url = "http://profile.daukhimiennam.com/code_account/"
+                    if BaseModel.shared.checkTrainningMode(){
+                        url = "http://profile.spj.vn/code_account/"
+                    }
+                    if content.contains(url){
+                        self.navigationController?.popViewController(animated: true)
+                        self.pushToView(name: "G21F00S03VC")
+                    }
+                    else{
+                        var id = ""
+                        if content.contains("http://spj.vn/app?code") {
+                            if let code = self.getQueryStringParameter(url: content, param: "code"){
+                                id = code
+                            }
+                        }
+                        if id == DomainConst.BLANK{
+                            self.showAlert(message: "Mã QR Code không hợp lệ",
+                                           okHandler: {
+                                            alert in
+                                            //self.backButtonTapped(self)
+                                            //G08F00S02VC._id = model.record.id
+                                            self.startScanQRcode()
+                            })
+                            //self.showAlert(message: "Mã QR Code không hợp lệ")
+                            
+                        }
+                        else{
+                            self.navigationController?.popViewController(animated: true)
+                            let promotionView = G13F00S01VC(nibName: G13F00S01VC.theClassName, bundle: nil)
+                            promotionView.activeUsingCode(code: id)
+                            if let controller = BaseViewController.getCurrentViewController() {
+                                controller.navigationController?.pushViewController(promotionView, animated: true)
+                            }
+                        }
+                    }
+                }
+                //--
             }
         }
     }
-    
 }

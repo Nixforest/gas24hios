@@ -8,7 +8,7 @@
 
 import UIKit
 import harpyframework
-
+//++ BUG0223-SPJ (KhoiVT 20180930) Gas24h - Forecast and set Timer Order Gas
 class DeleteTimerRequest: BaseRequest{
     /**
      * Set data content
@@ -40,3 +40,4 @@ class DeleteTimerRequest: BaseRequest{
         request.execute()
     }
 }
+//-- BUG0223-SPJ (KhoiVT 20180930) Gas24h - Forecast and set Timer Order Gas

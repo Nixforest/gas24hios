@@ -140,8 +140,30 @@ class G13F00S01VC: BaseParentViewController {
 
         // Do any additional setup after loading the view.
         self.createNavigationBar(title: DomainConst.CONTENT00247)
-        requestReferInfo()
+        //requestReferInfo()
+        //++
+//        if BaseModel.shared.sharedCode == DomainConst.BLANK{
+//            requestReferInfo()
+//        }
+//        else{
+//            self.mode = MODE_USING_CODE
+//            //switchMode()
+//            segment.selectedSegmentIndex = 0
+//            referView.isHidden = true
+//            usingCodeView.isHidden = false
+//            tblPromotion.isHidden = false
+//            let fullName : String = BaseModel.shared.sharedCode
+//            let fullNameArr : [String] = fullName.components(separatedBy: "/")
+//            var id : String = fullName
+//            if fullNameArr.count > 0 {
+//                id = fullNameArr[fullNameArr.count - 1]
+//            }
+//            txtUsingCode.text = id
+//            btnNextTapped(self)
+//        }
+        //--
     }
+    
     
     /**
      * Handle update constants
